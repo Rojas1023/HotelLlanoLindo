@@ -3,17 +3,27 @@
     margin: 0 auto;
     padding: 2rem;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+
   }
   
   .logo {
-    width: 100px;
-    margin-bottom: 1rem;
+    width: 100px; 
+    height: auto;
+    object-fit: contain;
   }
   
-  .titulo {
-    margin-bottom: 1.5rem;
-    color: #333;
-  }
+ .titulo {
+  margin: 0.5rem 0; 
+}
   
   .campo {
     margin-bottom: 1rem;
@@ -21,21 +31,28 @@
   
   .campo input {
     width: 100%;
-    padding: 0.5rem;
+    min-width: 300px;
+    padding: 0.5rem 1rem; 
     border: 1px solid #ccc;
     border-radius: 4px;
+    height: 15px;
   }
   
   .contraseña {
     position: relative;
+    display: flex;
+    align-items: center;
   }
   
   .toggle-password {
     position: absolute;
     right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
     cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 1.2em; 
+    color: #666; 
   }
   
   .boton-ingresar {
