@@ -7,7 +7,7 @@ const Logo = () => (
   <div className="logo-container">
     <img 
       src={logo} 
-      alt="HOTEL LANOIN" 
+      alt="HOTEL LLANO LINDO" 
       className="logo" 
     />
   </div>

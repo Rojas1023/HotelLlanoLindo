@@ -1,4 +1,10 @@
-body {
+body{
+  margin: 0;
+  padding: 0;
+}
+
+
+.App {
   background-color: #3AD55E; /* Fondo verde */
   margin: 0;
   padding: 0;
@@ -6,8 +12,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 320px;
   min-height: 100vh;
 }
+
+
 
 /* Contenedor del login */
 .login-container {
