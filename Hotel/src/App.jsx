@@ -5,6 +5,7 @@ import RoomsPage from './pages/Rack/RoomsPage'; // Asegúrate de que el path sea
 
 import './App.css';
 
+
 const App = () => {
   return (
     <div className="App">
