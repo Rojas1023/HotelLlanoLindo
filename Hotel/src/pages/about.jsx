@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import './about.css'
-
+import './about.css';
 
 const Usuarios = () => {
   // Función para generar ID aleatorio
@@ -13,6 +12,9 @@ const Usuarios = () => {
     { id: generarIdAleatorio(), nombre: 'Admin', rol: 'Administrador', usuario: 'admin', contraseña: 'admin123' },
     { id: generarIdAleatorio(), nombre: 'Recepción', rol: 'Empleado', usuario: 'recepcion', contraseña: 'recepcion123' },
   ]);
+
+  // Estado para controlar qué contraseñas se muestran
+  const [mostrarContraseñas, setMostrarContraseñas] = useState({});
 
   // Estado del formulario (sin ID inicial)
   const [formData, setFormData] = useState({
@@ -65,7 +67,19 @@ const Usuarios = () => {
   const eliminarUsuario = (id) => {
     if (window.confirm('¿Estás seguro de eliminar este usuario?')) {
       setUsuarios(usuarios.filter(user => user.id !== id));
+      // Limpiar el estado de mostrar contraseña si existe
+      const nuevasContraseñas = {...mostrarContraseñas};
+      delete nuevasContraseñas[id];
+      setMostrarContraseñas(nuevasContraseñas);
     }
+  };
+
+  // Mostrar/ocultar contraseña
+  const toggleMostrarContraseña = (id) => {
+    setMostrarContraseñas(prev => ({
+      ...prev,
+      [id]: !prev[id]
+    }));
   };
 
   // Limpiar formulario
@@ -134,7 +148,7 @@ const Usuarios = () => {
               >
                 <option value="">Seleccionar</option>
                 <option value="Administrador">Administrador</option>
-                <option value="Empleado">Empleado</option>
+                <option value="Empleado">Recepcionista</option>
               </select>
             </div>
             <div className="form-group">
@@ -193,8 +207,16 @@ const Usuarios = () => {
                   <td>{usuario.nombre}</td>
                   <td>{usuario.rol}</td>
                   <td>{usuario.usuario}</td>
-                  <td>••••••••</td>
                   <td>
+                    {mostrarContraseñas[usuario.id] ? usuario.contraseña : '••••••••'}
+                  </td>
+                  <td>
+                    <button 
+                      onClick={() => toggleMostrarContraseña(usuario.id)}
+                      className="accion-boton mostrar"
+                    >
+                      {mostrarContraseñas[usuario.id] ? 'Ocultar' : 'Mostrar'}
+                    </button>
                     <button 
                       onClick={() => editarUsuario(usuario.id)}
                       className="accion-boton editar"
