@@ -97,11 +97,11 @@ const Usuarios = () => {
     <div className="usuarios-container">
       <div className="usuarios-header">
         <h1>USUARIOS</h1>
-        <button className="usuarios-button">Usuarios</button>
+      
       </div>
 
       <div className="formulario-seccion">
-        <h2>Usuario</h2>
+        <h2>Crear usuario</h2>
         <form onSubmit={handleSubmit} className="formulario-usuario">
           <div className="form-row">
             <div className="form-group">
@@ -167,7 +167,6 @@ const Usuarios = () => {
       </div>
 
       <div className="acciones-seccion">
-        <h2>Crear</h2>
         <div className="acciones-botones">
           <button 
             type="submit" 
