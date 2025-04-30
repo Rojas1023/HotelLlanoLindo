@@ -71,3 +71,37 @@
     color: #007bff;
     text-decoration: none;
   }
+
+
+ 
+/* Estilos para el selector de rol */
+.rol-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #fff2f2c6;
+  font-weight: bold;
+  text-align: left;
+}
+
+.rol-selector {
+  width: 100%;
+  min-width: 300px;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 25px; /* 🔵 Aumenté el radio para más redondez */
+  background-color: rgb(255, 255, 255);
+  font-size: 16px;
+  margin-bottom: 15px;
+  height: 40px; /* 🔵 Pequeño ajuste en altura */
+  appearance: none; /* 🔵 Quita el estilo por defecto del navegador */
+  -webkit-appearance: none; /* 🔵 Para compatibilidad con Safari/Chrome */
+  -moz-appearance: none; /* 🔵 Para compatibilidad con Firefox */
+  cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.rol-selector:focus {
+  outline: none;
+  
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

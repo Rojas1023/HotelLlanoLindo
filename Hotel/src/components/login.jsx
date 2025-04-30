@@ -16,19 +16,25 @@ const Logo = () => (
 const Login = () => {
   const [usuario, setUsuario] = useState('');
   const [contrasena, setContrasena] = useState('');
+  const [rol, setRol] = useState('recepcionista');
   const [mostrar, setMostrar] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Usuario:', usuario, 'Contraseña:', contrasena);
-    navigate('/about');
+    console.log('Usuario:', usuario, 'Contraseña:', contrasena, 'Rol:', rol);
+    
+    // Redirigir según el rol seleccionado
+    if (rol === 'recepcionista') {
+      navigate('/recepcion'); // Ruta para recepcionista
+    } else if (rol === 'administrador') {
+      navigate('/admin'); // Ruta para administrador
+    }
   };
 
   return (
     <div className="login-container">
       <Logo />
-      
       <h1 className="titulo">Iniciar Sesión</h1>
       
       <form onSubmit={handleSubmit}>
@@ -55,8 +61,20 @@ const Login = () => {
             onClick={() => setMostrar(!mostrar)}
             aria-label={mostrar ? 'Ocultar contraseña' : 'Mostrar contraseña'}
           >
-            {mostrar ? '🙈' : '👁️'}
+            {mostrar ? '𖠂' : '∅'}
           </span>
+        </div>
+        
+        <div className="campo">
+          <select
+            id="rol"
+            value={rol}
+            onChange={(e) => setRol(e.target.value)}
+            className="rol-selector"
+          >
+            <option value="recepcionista">Recepcionista</option>
+            <option value="administrador">Administrador</option>
+          </select>
         </div>
         
         <button type="submit" className="boton-ingresar">
