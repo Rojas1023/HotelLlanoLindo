@@ -1,88 +1,196 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import './recepcion.css'; 
+import React, { useState } from 'react';
+import './recepcion.css';
 
-const Recepcion = () => {
-  const navigate = useNavigate();
+const RecepcionPanel = () => {
+  const [showCheckInForm, setShowCheckInForm] = useState(false);
+  const [showCheckOutForm, setShowCheckOutForm] = useState(false);
+  const [huespedesActivos, setHuespedesActivos] = useState([
+    { id: 203, nombre: 'Juan Pérez', checkIn: '2023-10-25' },
+    { id: 305, nombre: 'María Gómez', checkIn: '2023-10-26' },
+    { id: 102, nombre: 'Carlos Rojas', checkIn: '2023-10-27' }
+  ]);
+  const [nuevoHuesped, setNuevoHuesped] = useState({
+    nombre: '',
+    habitacion: '',
+    fechaCheckIn: new Date().toISOString().split('T')[0],
+    metodoPago: ''
+  });
 
-  // Datos de ejemplo (huéspedes activos)
-  const huespedesActivos = [
-    { id: 101, nombre: 'Juan Pérez', habitacion: '203', checkIn: '2023-10-25' },
-    { id: 102, nombre: 'María Gómez', habitacion: '305', checkIn: '2023-10-26' },
-    { id: 103, nombre: 'Carlos Rojas', habitacion: '102', checkIn: '2023-10-27' },
-  ];
+  const handleCheckInClick = () => {
+    setShowCheckInForm(true);
+    setShowCheckOutForm(false);
+  };
+
+  const handleCheckOutClick = () => {
+    setShowCheckOutForm(true);
+    setShowCheckInForm(false);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNuevoHuesped({ ...nuevoHuesped, [name]: value });
+  };
+
+  const submitCheckIn = (e) => {
+    e.preventDefault();
+    const nuevoId = Math.max(...huespedesActivos.map(h => h.id), 0) + 1;
+
+    setHuespedesActivos([
+      ...huespedesActivos,
+      {
+        id: nuevoId,
+        nombre: nuevoHuesped.nombre,
+        checkIn: nuevoHuesped.fechaCheckIn
+      }
+    ]);
+
+    setNuevoHuesped({
+      nombre: '',
+      habitacion: '',
+      fechaCheckIn: new Date().toISOString().split('T')[0],
+      metodoPago: ''
+    });
+    setShowCheckInForm(false);
+  };
+
+  const submitCheckOut = (e) => {
+    e.preventDefault();
+    const habitacion = nuevoHuesped.habitacion;
+
+    const actualizados = huespedesActivos.filter(h => h.id.toString() !== habitacion);
+    setHuespedesActivos(actualizados);
+
+    alert(`Check-out realizado para habitación ${habitacion}`);
+    setNuevoHuesped({
+      nombre: '',
+      habitacion: '',
+      fechaCheckIn: new Date().toISOString().split('T')[0],
+      metodoPago: ''
+    });
+    setShowCheckOutForm(false);
+  };
 
   return (
-    <div className="recepcion-container">
-      {/* Barra superior con título y botón de salir */}
-      <header className="recepcion-header">
-        <h1>Panel de Recepción</h1>
-        <button 
-          className="btn-salir"
-          onClick={() => navigate('/')}
-        >
-          Cerrar Sesión
-        </button>
-      </header>
-
-      {/* Sección de acciones rápidas */}
-      <div className="acciones-rapidas">
-        <h2>Acciones Rápidas</h2>
-        <div className="botones-acciones">
-          <button 
-            className="btn-accion"
-            onClick={() => navigate('/checkin')} // Ajusta la ruta según tu app
-          >
-            Check-In
-          </button>
-          <button 
-            className="btn-accion"
-            onClick={() => navigate('/checkout')}
-          >
-            Check-Out
-          </button>
-          <button 
-            className="btn-accion"
-            onClick={() => navigate('/reservas')}
-          >
-            Reservas
-          </button>
+    <div className="panel-container">
+      <div className="panel-header">
+        <h1>PANEL DE RECEPCIÓN</h1>
+        <div className="user-info">
         </div>
       </div>
 
-      {/* Lista de huéspedes activos */}
-      <div className="huespedes-activos">
-        <h2>Huéspedes Activos</h2>
-        <table className="tabla-huespedes">
+      <div className="section">
+        <h2>ACCIONES RÁPIDAS</h2>
+        <div className="quick-actions">
+          <button className="action-btn primary" onClick={handleCheckInClick}>CHECK-IN</button>
+          <button className="action-btn secondary" onClick={handleCheckOutClick}>CHECK-OUT</button>
+        </div>
+
+        {showCheckInForm && (
+          <div className="form-container">
+            <h3>NUEVO CHECK-IN</h3>
+            <form onSubmit={submitCheckIn}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Nombre del huésped:</label>
+                  <input
+                    type="text"
+                    name="nombre"
+                    value={nuevoHuesped.nombre}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Número de habitación (ID):</label>
+                  <input
+                    type="text"
+                    name="habitacion"
+                    value={nuevoHuesped.habitacion}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Fecha de check-in:</label>
+                  <input
+                    type="date"
+                    name="fechaCheckIn"
+                    value={nuevoHuesped.fechaCheckIn}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="form-buttons">
+                <button type="submit" className="action-btn primary">CONFIRMAR CHECK-IN</button>
+                <button type="button" className="action-btn cancel" onClick={() => setShowCheckInForm(false)}>CANCELAR</button>
+              </div>
+            </form>
+          </div>
+        )}
+
+        {showCheckOutForm && (
+          <div className="form-container">
+            <h3>PROCESAR CHECK-OUT</h3>
+            <form onSubmit={submitCheckOut}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label>Número de habitación (ID):</label>
+                  <input
+                    type="text"
+                    name="habitacion"
+                    value={nuevoHuesped.habitacion}
+                    onChange={handleInputChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Método de pago:</label>
+                  <select
+                    name="metodoPago"
+                    value={nuevoHuesped.metodoPago}
+                    onChange={handleInputChange}
+                    required
+                  >
+                    <option value="">Seleccionar...</option>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="tarjeta">Tarjeta de crédito</option>
+                    <option value="transferencia">Transferencia</option>
+                  </select>
+                </div>
+              </div>
+              <div className="form-buttons">
+                <button type="submit" className="action-btn secondary">PROCESAR CHECK-OUT</button>
+                <button type="button" className="action-btn cancel" onClick={() => setShowCheckOutForm(false)}>CANCELAR</button>
+              </div>
+            </form>
+          </div>
+        )}
+      </div>
+
+      <div className="section">
+        <h2>HUESPEDES ACTIVOS</h2>
+        <table className="active-guests-table">
           <thead>
             <tr>
-              <th>Habitación</th>
+              <th>ID</th>
               <th>Nombre</th>
-              <th>Check-In</th>
-              <th>Acciones</th>
+              <th>Fecha Check-In</th>
             </tr>
           </thead>
           <tbody>
-            {huespedesActivos.map((huesped) => (
-              <tr key={huesped.id}>
-                <td>{huesped.habitacion}</td>
-                <td>{huesped.nombre}</td>
-                <td>{huesped.checkIn}</td>
-                <td>
-                  <button className="btn-detalle">Ver Detalle</button>
-                </td>
+            {huespedesActivos.map(h => (
+              <tr key={h.id}>
+                <td>{h.id}</td>
+                <td>{h.nombre}</td>
+                <td>{h.checkIn}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-
-      {/* Mensaje de bienvenida o notificaciones */}
-      <div className="notificaciones">
-        <p>Bienvenido/a, <strong>Usuario Recepcionista</strong>. Hoy es {new Date().toLocaleDateString()}.</p>
-      </div>
     </div>
   );
 };
 
-export default Recepcion;
+export default RecepcionPanel;

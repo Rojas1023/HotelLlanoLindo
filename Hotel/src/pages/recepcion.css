@@ -1,72 +1,127 @@
-.recepcion-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .recepcion-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-  }
-  
-  .btn-salir {
-    background: #ff4444;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .acciones-rapidas {
-    margin-bottom: 30px;
-  }
-  
-  .botones-acciones {
-    display: flex;
-    gap: 15px;
-  }
-  
-  .btn-accion {
-    background: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .tabla-huespedes {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 15px;
-  }
-  
-  .tabla-huespedes th, .tabla-huespedes td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .tabla-huespedes th {
-    background-color: #f2f2f2;
-  }
-  
-  .btn-detalle {
-    background: #2196F3;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .notificaciones {
-    margin-top: 20px;
-    padding: 10px;
-    background: #f8f9fa;
-    border-radius: 5px;
-  }
+.panel-container {
+  background-color: #32cd32; /* verde principal */
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  font-family: sans-serif;
+  width: 80%;
+  margin: 20px;
+}
+
+.panel-header h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-top: 10px;
+  background-color: #2eb82e; /* verde más claro */
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.action-btn {
+  padding: 8px 16px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.primary {
+  background-color: #28a745;
+}
+
+.secondary {
+  background-color: #007bff;
+}
+
+.cancel {
+  background-color: #dc3545;
+}
+
+.action-btn:hover {
+  opacity: 0.9;
+}
+
+.form-container {
+  background-color: white;
+  color: black;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  margin-top: 15px;
+}
+
+.form-container h3 {
+  margin-bottom: 15px;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.form-group {
+  flex: 1;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.active-guests-table {
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.active-guests-table th,
+.active-guests-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  text-align: left;
+}
+
+.active-guests-table th {
+  background-color: #f8f8f8;
+}
+
+.active-guests-table tr:hover {
+  background-color: #f1f1f1;
+}
