@@ -1,0 +1,70 @@
+.habitacion-container {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.habitacion-container h2 {
+  color: #6c63ff;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.habitacion-container h3,
+.habitacion-container h4 {
+  margin-top: 20px;
+  margin-bottom: 15px;
+  color: #444;
+  text-align: center;
+}
+
+.habitacion-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.habitacion-container input,
+.habitacion-container select {
+  padding: 12px 14px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.habitacion-container input:focus,
+.habitacion-container select:focus {
+  border-color: #6c63ff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.2);
+}
+
+.habitacion-container button {
+  padding: 12px;
+  background-color: #6c63ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.habitacion-container button:hover {
+  background-color: #574bdb;
+}
+
+.habitacion-container p {
+  margin: 8px 0;
+  color: #555;
+  font-size: 15px;
+}
+
+.habitacion-container strong {
+  color: #333;
+}

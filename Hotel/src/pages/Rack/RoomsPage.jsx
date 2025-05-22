@@ -1,72 +1,44 @@
-// RoomRack.jsx
+// pages/Rack/RoomsPage.jsx
 import React from 'react';
-import RoomButton from './RoomButton';
-import './RoomGrid.css';
+import { useNavigate } from 'react-router-dom';
+import './RoomsPage.css';
 
-const rooms = [
-    { number: 101, status: 'Libre' },
-    { number: 102, status: 'Ocupado' },
-    { number: 103, status: 'En Limpieza' },
-    { number: 104, status: 'Fuera de servicio' },
-    { number: 105, status: 'Deuda' },
-    { number: 106, status: 'Libre' },
-    { number: 107, status: 'Ocupado' },
-    { number: 108, status: 'En Limpieza' },
-    { number: 109, status: 'Fuera de servicio' },
-    { number: 110, status: 'Deuda' },
-    { number: 201, status: 'Libre' },
-    { number: 202, status: 'Ocupado' },
-    { number: 203, status: 'En Limpieza' },
-    { number: 204, status: 'Fuera de servicio' },
-    { number: 205, status: 'Deuda' },
-    { number: 206, status: 'Libre' },
-    { number: 207, status: 'Ocupado' },
-    { number: 208, status: 'En Limpieza' },
-    { number: 209, status: 'Fuera de servicio' },
-    { number: 210, status: 'Deuda' },
-    { number: 301, status: 'Libre' },
-    { number: 302, status: 'Ocupado' },
-    { number: 303, status: 'En Limpieza' },
-    { number: 304, status: 'Fuera de servicio' },
-    { number: 305, status: 'Deuda' },
-    { number: 306, status: 'Libre' },
-    { number: 307, status: 'Ocupado' },
-    { number: 308, status: 'En Limpieza' },
-    { number: 309, status: 'Fuera de servicio' },
-    { number: 310, status: 'Deuda' },
-  // agrega más habitaciones para ver el wrap
-];
+const generarHabitaciones = () => {
+  const rooms = [];
+  const pisos = {
+    1: [101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111],
+    2: Array.from({ length: 13 }, (_, i) => 201 + i),
+    3: Array.from({ length: 12 }, (_, i) => 301 + i)
+  };
+  Object.values(pisos).forEach(arr => rooms.push(...arr));
+  return rooms;
+};
 
-const RoomRack = () => {
-  // Agrupamos las habitaciones por piso
-  const groupedByFloor = {};
-  rooms.forEach(room => {
-    const floor = Math.floor(room.number / 100);
-    if (!groupedByFloor[floor]) groupedByFloor[floor] = [];
-    groupedByFloor[floor].push(room);
-  });
+const RoomsPage = () => {
+  const habitaciones = generarHabitaciones();
+  const navigate = useNavigate();
 
-  // Ordenamos los pisos del 3 al 1
-  const orderedFloors = Object.keys(groupedByFloor)
-    .sort((a, b) => b - a)
-    .map(floor => groupedByFloor[floor]);
+  const ocupadas = JSON.parse(localStorage.getItem('huespedes')) || [];
 
   return (
-    <div className="room-rack">
-      {orderedFloors.map((floorRooms, idx) => (
-        <div key={idx} className="room-floor">
-          {floorRooms.map((room, index) => (
-            <RoomButton
-              key={room.number}
-              number={room.number}
-              status={room.status}
-              onClick={() => console.log(`Habitación ${room.number} clickeada`)}
-            />
-          ))}
-        </div>
-      ))}
+    <div className="rack-container">
+      <h1>RACK DE HABITACIONES</h1>
+      <div className="rack-grid">
+        {habitaciones.map(numero => {
+          const ocupada = ocupadas.some(h => h.habitacion === numero);
+          return (
+            <button
+              key={numero}
+              className={`room-btn ${ocupada ? 'ocupada' : 'libre'}`}
+              onClick={() => navigate(`/habitacion/${numero}`)}
+            >
+              {numero}
+            </button>
+          );
+        })}
+      </div>
     </div>
   );
 };
 
-export default RoomRack;
+export default RoomsPage;

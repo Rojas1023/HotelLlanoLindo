@@ -3,6 +3,7 @@ import Login from './components/login';
 import About from './pages/about';
 import RoomsPage from './pages/Rack/RoomsPage'; // Asegúrate de que el path sea correcto
 import Recepcion from './pages/recepcion';
+import Habitacion from './pages/Rack/Habitacion';
 
 import './App.css';
 
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/admin" element={<About />} />
         <Route path="/recepcion" element={<Recepcion />} />
         <Route path="/Rack/RoomsPage" element={<RoomsPage />} />
+        <Route path="/habitacion/:id" element={<Habitacion />} />
       </Routes>
     </Router>
     </div>
