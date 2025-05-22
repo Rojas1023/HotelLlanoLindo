@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import './about.css';
 
 const Usuarios = () => {
-  // Función para generar ID aleatorio
+  //ID aleatorio
   const generarIdAleatorio = () => {
-    return Math.floor(Math.random() * 1000000); // Genera un número entre 0 y 999999
+    return Math.floor(Math.random() * 1000000);
   };
 
-  // Datos iniciales con IDs aleatorios
+  
   const [usuarios, setUsuarios] = useState([
     { id: generarIdAleatorio(), nombre: 'Admin', rol: 'Administrador', usuario: 'admin', contraseña: 'admin123' },
     { id: generarIdAleatorio(), nombre: 'Recepción', rol: 'Empleado', usuario: 'recepcion', contraseña: 'recepcion123' },
   ]);
 
-  // Estado para controlar qué contraseñas se muestran
+  
   const [mostrarContraseñas, setMostrarContraseñas] = useState({});
 
-  // Estado del formulario (sin ID inicial)
+  
   const [formData, setFormData] = useState({
     nombre: '',
     rol: '',
@@ -26,7 +26,7 @@ const Usuarios = () => {
 
   const [editandoId, setEditandoId] = useState(null);
 
-  // Manejar cambios en los inputs
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -35,7 +35,7 @@ const Usuarios = () => {
     });
   };
 
-  // Guardar usuario (crear o actualizar)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (editandoId) {
@@ -43,13 +43,13 @@ const Usuarios = () => {
         user.id === editandoId ? { ...formData, id: editandoId } : user
       ));
     } else {
-      // Generar ID aleatorio solo al guardar
+
       setUsuarios([...usuarios, { ...formData, id: generarIdAleatorio() }]);
     }
     limpiarFormulario();
   };
 
-  // Editar usuario existente
+
   const editarUsuario = (id) => {
     const usuario = usuarios.find(u => u.id === id);
     if (usuario) {
@@ -63,18 +63,16 @@ const Usuarios = () => {
     }
   };
 
-  // Eliminar usuario
+
   const eliminarUsuario = (id) => {
     if (window.confirm('¿Estás seguro de eliminar este usuario?')) {
       setUsuarios(usuarios.filter(user => user.id !== id));
-      // Limpiar el estado de mostrar contraseña si existe
       const nuevasContraseñas = {...mostrarContraseñas};
       delete nuevasContraseñas[id];
       setMostrarContraseñas(nuevasContraseñas);
     }
   };
 
-  // Mostrar/ocultar contraseña
   const toggleMostrarContraseña = (id) => {
     setMostrarContraseñas(prev => ({
       ...prev,
@@ -82,7 +80,6 @@ const Usuarios = () => {
     }));
   };
 
-  // Limpiar formulario
   const limpiarFormulario = () => {
     setFormData({
       nombre: '',

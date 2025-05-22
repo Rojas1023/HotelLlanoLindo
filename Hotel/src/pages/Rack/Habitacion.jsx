@@ -1,10 +1,9 @@
-// pages/Rack/Habitacion.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import '../Rack/Habitacion.css'; // Asegúrate de tener un archivo CSS para estilos
+import '../Rack/Habitacion.css';
 
 const Habitacion = () => {
-  const { id } = useParams(); // Número de habitación
+  const { id } = useParams();
   const navigate = useNavigate();
   const [huesped, setHuesped] = useState(null);
   const [formData, setFormData] = useState({

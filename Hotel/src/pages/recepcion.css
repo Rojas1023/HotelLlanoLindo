@@ -1,5 +1,5 @@
 .panel-container {
-  background-color: #32cd32; /* verde principal */
+  background-color: #32cd32;
   padding: 20px;
   border-radius: 10px;
   color: white;
@@ -21,7 +21,7 @@
 
 .section {
   margin-top: 10px;
-  background-color: #2eb82e; /* verde más claro */
+  background-color: #2eb82e;
   padding: 15px;
   border-radius: 10px;
 }

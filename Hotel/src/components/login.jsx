@@ -24,11 +24,10 @@ const Login = () => {
     e.preventDefault();
     console.log('Usuario:', usuario, 'Contraseña:', contrasena, 'Rol:', rol);
     
-    // Redirigir según el rol seleccionado
     if (rol === 'recepcionista') {
-      navigate('/recepcion'); // Ruta para recepcionista
+      navigate('/Rack/RoomsPage');
     } else if (rol === 'administrador') {
-      navigate('/admin'); // Ruta para administrador
+      navigate('/admin');
     }
   };
 

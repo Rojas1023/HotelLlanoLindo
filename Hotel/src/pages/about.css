@@ -163,14 +163,12 @@ tr:hover {
 }
 
 .mostrar {
-  background-color: #27b079; /* púrpura para distinguir */
+  background-color: #27b079;
   color: white;
   margin-right: 5px;
 }
 
 
-
-/* Estilos responsivos */
 @media (max-width: 768px) {
   .form-row {
     flex-direction: column;

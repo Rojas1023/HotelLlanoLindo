@@ -1,4 +1,3 @@
-// pages/Rack/RoomsPage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './RoomsPage.css';
@@ -29,7 +28,7 @@ const RoomsPage = () => {
           return (
             <button
               key={numero}
-              className={`room-btn ${ocupada ? 'ocupada' : 'libre'}`}
+              className={`room-btn ${ocupada ? 'ocupada' : 'libre'} ${ocupada ? <img src="/src/assets/Ocupada.png" alt="ocupada" /> : <img src="/src/assets/Libre.png" alt="libre" />}`}
               onClick={() => navigate(`/habitacion/${numero}`)}
             >
               {numero}

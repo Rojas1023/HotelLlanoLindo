@@ -5,7 +5,7 @@ body{
 
 
 .App {
-  background-color: #3AD55E; /* Fondo verde */
+  background-color: #3AD55E;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@ body{
 
 
 
-/* Contenedor del login */
+
 .login-container {
   width: 350px;
   background-color: #47B444;
@@ -29,20 +29,18 @@ body{
   
 }
 
-/* Logo */
+
 .logo {
   width: 150px;
   margin-bottom: 20px;
 }
 
-/* Título */
 .titulo {
   color: white;
   margin-bottom: 25px;
   font-size: 34px;
 }
 
-/* Campo de entrada */
 .campo {
   margin-bottom: 25px;
   position: relative;
@@ -68,7 +66,6 @@ body{
   box-shadow: 0 0 0 2px #a5d6a7;
 }
 
-/* Ícono de mostrar contraseña */
 .toggle-password {
   position: absolute;
   right: 15px;
@@ -78,7 +75,6 @@ body{
   font-size: 18px;
 }
 
-/* Botón */
 .boton-ingresar {
   width: 50%;
   padding: 12px;
